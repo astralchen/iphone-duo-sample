@@ -2,6 +2,8 @@
 
 A UIKit sample app demonstrating APIs introduced for iPhone Duo in iOS 27.1, including hinge updates, reserved regions, and `UIArrangementViewController`.
 
+![Screenshot](screenshot.png)
+
 ## Requirements
 
 - Xcode 27.1 or later
