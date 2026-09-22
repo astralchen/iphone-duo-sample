@@ -40,6 +40,12 @@ final class AppCoordinator {
     
     private func navigateToPath(_ path: IntroNavigationPath) {
         switch path {
+        case .arrangementView:
+            let viewModel = ArrangementViewModel()
+            let viewController = ArrangementViewController(viewModel: viewModel)
+            viewController.navigationItem.title = "Arrangement View"
+            
+            navigationController.pushViewController(viewController, animated: true)
         case .reservedRegions:
             let viewModel = ReservedRegionViewModel()
             let viewController = ReservedRegionViewController(viewModel: viewModel)

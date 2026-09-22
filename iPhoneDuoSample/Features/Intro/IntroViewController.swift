@@ -50,6 +50,7 @@ final class IntroViewController: BaseViewController<IntroViewModel> {
     private lazy var arrangementViewButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Arrangement View", for: .normal)
+        button.addTarget(self, action: #selector(arrangementViewButtonTap), for: .touchUpInside)
         return button
     }()
     
@@ -198,5 +199,9 @@ final class IntroViewController: BaseViewController<IntroViewModel> {
     
     @objc private func reservedRegionsButtonTap() {
         viewModel.processReservedRegionButtonTap()
+    }
+    
+    @objc private func arrangementViewButtonTap() {
+        viewModel.processArrangementViewButtonTap()
     }
 }

@@ -11,5 +11,6 @@
 import Foundation
 
 enum IntroNavigationPath {
+    case arrangementView
     case reservedRegions
 }

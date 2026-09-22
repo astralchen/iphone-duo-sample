@@ -33,6 +33,10 @@ final class IntroViewModel: IntroViewModelOutputs {
         _navigationPath.send(.reservedRegions)
     }
     
+    func processArrangementViewButtonTap() {
+        _navigationPath.send(.arrangementView)
+    }
+    
     private func updateContent(_ status: HingeStatus) {
         switch status {
         case let .active(angle, status):
