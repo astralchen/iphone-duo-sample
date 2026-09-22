@@ -21,6 +21,11 @@ final class AppCoordinator {
     }
     
     func start() {
+        let viewModel = IntroViewModel()
+        let viewController = IntroViewController(viewModel: viewModel)
+        
+        navigationController.setViewControllers([viewController], animated: false)
+        
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
     }
