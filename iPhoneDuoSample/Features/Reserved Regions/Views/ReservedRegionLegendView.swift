@@ -22,6 +22,7 @@ final class ReservedRegionLegendView: UIStackView {
         let label = UILabel()
         label.font = .preferredFont(forTextStyle: .body)
         label.textColor = .label
+        // 降低文字的水平 hugging 优先级，让多余宽度由文字区域吸收。
         label.setContentHuggingPriority(.defaultLow - 1, for: .horizontal)
         return label
     }()
@@ -29,6 +30,7 @@ final class ReservedRegionLegendView: UIStackView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        // 在布局完成、实际尺寸确定后计算半径，使正方形色块呈现为圆点。
         colorView.layer.cornerRadius = colorView.bounds.width / 2
     }
     
@@ -54,8 +56,25 @@ final class ReservedRegionLegendView: UIStackView {
         addArrangedSubview(colorView)
         addArrangedSubview(textLabel)
         
+        // 固定圆点尺寸；文字沿水平方向排列，并与圆点垂直居中。
         colorView.snp.makeConstraints { make in
             make.size.equalTo(16)
         }
     }
 }
+
+#if DEBUG
+#Preview("区域图例 · Active", traits: .sizeThatFitsLayout) {
+    let viewModel = ReservedRegionViewModel()
+    let legend = ReservedRegionLegendView()
+    legend.update(text: "Active Region", color: viewModel.activeRegionColor)
+    return PreviewSupport.component(legend)
+}
+
+#Preview("区域图例 · Inactive", traits: .sizeThatFitsLayout) {
+    let viewModel = ReservedRegionViewModel()
+    let legend = ReservedRegionLegendView()
+    legend.update(text: "Inactive Region", color: viewModel.inactiveRegionColor)
+    return PreviewSupport.component(legend)
+}
+#endif

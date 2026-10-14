@@ -44,6 +44,7 @@ final class ArrangementContentViewController: UIViewController {
         label.textColor = color
         box.addSubview(label)
         
+        // 以内嵌页面自己的 Safe Area 为边界，使卡片留白随系统容器分配的区域调整。
         box.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide).inset(16)
         }
@@ -53,3 +54,25 @@ final class ArrangementContentViewController: UIViewController {
         }
     }
 }
+
+#if DEBUG
+#Preview("内容组件 · Primary", traits: .fixedLayout(width: 390, height: 300)) {
+    let viewModel = ArrangementViewModel()
+    let controller = ArrangementContentViewController(
+        color: viewModel.primaryContentColor,
+        text: viewModel.primaryContentText
+    )
+    controller.view.backgroundColor = .systemBackground
+    return controller
+}
+
+#Preview("内容组件 · Secondary", traits: .fixedLayout(width: 390, height: 300)) {
+    let viewModel = ArrangementViewModel()
+    let controller = ArrangementContentViewController(
+        color: viewModel.secondaryContentColor,
+        text: viewModel.secondaryContentText
+    )
+    controller.view.backgroundColor = .systemBackground
+    return controller
+}
+#endif

@@ -29,6 +29,8 @@ class BaseViewController<ViewModelType>: UIViewController {
     open override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
         
+        // 首次进入视图层级后再初始化布局，使子类能够使用当前容器的尺寸、Safe Area 和 traits。
+        // 后续再次显示页面时保留已有视图与约束，避免重复添加。
         guard !didInitialize else { return }
         
         didInitialize = true
@@ -36,6 +38,7 @@ class BaseViewController<ViewModelType>: UIViewController {
         viewDidInitialize()
     }
     
+    /// 在页面首次即将显示时构建视图和初始约束；后续尺寸变化由子类自行处理。
     open func viewDidInitialize() {
         // Override
     }
